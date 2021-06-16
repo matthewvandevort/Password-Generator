@@ -5,7 +5,9 @@ function generatePassword() {
   var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
   var lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
   var uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-  
+  var special = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
+
+
   var possiblePassword = [];
 
 // Choosing a password length between 8-128 characters long. Checking if the number chossen fall between said range.
@@ -27,7 +29,7 @@ function generatePassword() {
     alert('Your password will NOT have lowercase letters.');
   }   
   
-  var wantUpperCase = confirm('Would you like lowercase letters in your password? Press OK for yes, Cancel for no.');
+  var wantUpperCase = confirm('Would you like uppercase letters in your password? Press OK for yes, Cancel for no.');
   if (wantUpperCase === true) {
     alert('Your password will have uppercase letters.');
   } else {
@@ -41,9 +43,16 @@ function generatePassword() {
     alert('Your password will NOT have numbers.');
   }
   
+  var wantSpecialCharacters = confirm('Would you like special characters in your password? Press OK for yes, Cancel for no.');
+  if (wantSpecialCharacters === true) {
+    alert('Your password will have special characters.');
+  } else {
+    alert('Your password will NOT have special characters.');
+  }
+
 // If users don't select at least one character type, return a error message.
 
-  if (wantLowerCase === false && wantUpperCase === false && wantNumbers === false) {
+  if (wantLowerCase === false && wantUpperCase === false && wantNumbers === false && wantSpecialCharacters === false) {
     return'Please select at least one valid character type!!!';
   };
 
@@ -60,7 +69,10 @@ function generatePassword() {
   if (wantNumbers === true) {
     var possiblePassword = possiblePassword.concat(numbers);
   }
-
+  
+  if (wantSpecialCharacters === true) {
+    var possiblePassword = possiblePassword.concat(special);
+  }
 // Using a for loop to generate a random password with the Math.floor and Math.random methods which
 
   let finalPassword = ""
