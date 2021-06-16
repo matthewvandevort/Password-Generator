@@ -10,6 +10,8 @@ function generatePassword() {
 
   var possiblePassword = [];
 
+  alert('Password must contain at least one of the following types of characters: Numbers, lowercase letters, uppercase letters or special characters.');
+
 // Choosing a password length between 8-128 characters long. Checking if the number chossen fall between said range.
 
   var numberOfCharacters = prompt('How many characters would you like your password to be? Please choose between 8-128 characters in length.');
