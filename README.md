@@ -32,3 +32,5 @@ Description of project: This project was to write the JavaScript code to make a 
 * [Return MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return)
 
 * [Concat method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat)
+
+* [Markdown Guide](https://www.markdownguide.org/basic-syntax/)
