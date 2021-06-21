@@ -2,7 +2,7 @@
 
 // Function with variables for posssible characters.
 function generatePassword() {
-  var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+  var numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
   var lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
   var uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   var special = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~'];
@@ -25,39 +25,45 @@ function generatePassword() {
 // Checking if the user wants each character type in their password.
 
   var wantLowerCase = confirm('Would you like lowercase letters in your password? Press OK for yes, Cancel for no.');
-  if (wantLowerCase === true) {
-    alert('Your password will have lowercase letters.');
-  } else {
-    alert('Your password will NOT have lowercase letters.');
-  }   
-  
   var wantUpperCase = confirm('Would you like uppercase letters in your password? Press OK for yes, Cancel for no.');
-  if (wantUpperCase === true) {
-    alert('Your password will have uppercase letters.');
-  } else {
-    alert('Your password will NOT have uppercase letters.');
-  }   
-  
   var wantNumbers = confirm('Would you like numbers in your password? Press OK for yes, Cancel for no.');
-  if (wantNumbers === true) {
-    alert('Your password will have numbers.');
-  } else {
-    alert('Your password will NOT have numbers.');
-  }
-  
   var wantSpecialCharacters = confirm('Would you like special characters in your password? Press OK for yes, Cancel for no.');
-  if (wantSpecialCharacters === true) {
-    alert('Your password will have special characters.');
-  } else {
-    alert('Your password will NOT have special characters.');
-  }
-
+ 
 // If users don't select at least one character type, return a error message.
 
   if (wantLowerCase === false && wantUpperCase === false && wantNumbers === false && wantSpecialCharacters === false) {
     return'Please select at least one valid character type!!!';
   };
 
+// Function that will guarantee at least one character of a users selection is in the final password.
+  var possiblePassword = [];
+  var guarChars = [];
+  function getRandItem(numbers) {
+      var index = Math.floor(Math.random() * numbers.length);
+      var randomItem = numbers[index];
+      guarChars = guarChars.concat(randomItem);
+  }
+  
+  if (wantNumbers === true) {
+    getRandItem(numbers);
+  }
+  console.log(guarChars);
+
+  if (wantLowerCase === true) {
+    getRandItem(lowercase);
+  }
+  console.log(guarChars);
+
+  if (wantUpperCase === true) {
+    getRandItem(uppercase);
+  }
+  console.log(guarChars);
+
+  if (wantSpecialCharacters === true) {
+    getRandItem(special);
+  }
+  console.log(guarChars);
+  
   // If users select a certain character type it gets added to the empty array in the variable 'possiblePassword'.
 
   if (wantLowerCase === true) {
@@ -75,21 +81,20 @@ function generatePassword() {
   if (wantSpecialCharacters === true) {
     var possiblePassword = possiblePassword.concat(special);
   }
-// Using a for loop to generate a random password with the Math.floor and Math.random methods which
+  console.log(possiblePassword);
 
-  let finalPassword = ""
-  for (let i = 0; i < numberOfCharacters; i++) {
-    let randomNumberGenerator = [Math.floor(Math.random() * possiblePassword.length)];
+// Using a for loop to generate a random password with the Math.floor and Math.random methods which then gets put into the final password.
 
-    finalPassword = finalPassword + possiblePassword[randomNumberGenerator];
+  let finalPassword = guarChars;
+
+  for (let i = 0; i < numberOfCharacters - guarChars.length; i++) {
+    let randomNumberGenerator = Math.floor(Math.random() * possiblePassword.length);
+
+    finalPassword = finalPassword.concat(possiblePassword[randomNumberGenerator]);
   }
-
-  // Returns the final password to the screen.
-  return finalPassword;
-
+// Returns the final password to the screen.
+  return finalPassword.join('');
 };
-
-
 
 var generateBtn = document.querySelector("#generate");
 
@@ -104,3 +109,4 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
