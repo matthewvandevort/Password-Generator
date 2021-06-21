@@ -15,7 +15,7 @@ Description of project: This project was to write the JavaScript code to make a 
 
 # Screenshot
 
-![Password Generator](.\Assets\Screenshot.jpeg
+![Password Generator](./Assets/Screenshot.jpeg
 )
 
 # Link to Deployed Project
